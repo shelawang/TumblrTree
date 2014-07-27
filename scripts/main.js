@@ -11,6 +11,8 @@ window.onload = function() {
         $("#postURL").val(TEST_POST_URL);
     }
 
+    console.log("oh hey you cute nerd");
+
     addListeners();
 }
 
@@ -57,7 +59,7 @@ function addPostStats(noteCount, numGraphedReblogs) {
 
     var stats = "<a href='" + postURL + "'>This post</a> has <b>"
         + noteCount + "</b> notes. <b>"
-        + numGraphedReblogs + "</b> reblogs are shown here."
+        + numGraphedReblogs + "</b> of its reblogs are shown here."
 
     $("#stats").html(stats);
 }
@@ -197,6 +199,10 @@ function recursiveEdges(reblogs, data, username, postID, nodeIDs, noteCount) {
         url: getAPIURL(username, "posts", "id=" + postID + "&reblog_info=true"),
         success: function(result) {
 
+            if (result.meta.status != 200) {
+                return;
+            }
+
             var post = result.response.posts[0];
             var parentUsername = post.reblogged_from_name;
             var parentPostID = post.reblogged_from_id;
@@ -228,7 +234,6 @@ function recursiveEdges(reblogs, data, username, postID, nodeIDs, noteCount) {
 
             // Recursive base case
             if (reblogs.length == 0) {
-                console.log("oh hey you cute nerd");
                 log(data);
                 addPostStats(noteCount, data.nodes.length);
                 displayGraph(data); // Finally!

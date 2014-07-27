@@ -1,0 +1,36 @@
+body{
+   text-align: left;
+   font-family: Sans-Serif;
+}
+
+#wrapper {
+    width: 80%;
+    max-width: 1000px;
+    margin: 0 auto;
+}
+
+#sigmaContainer {
+    height: 600px;
+    margin: auto;
+}
+
+input[type=text] {
+    width: 50%;
+    margin: 0.5em;
+    margin-bottom: 0px;
+}
+
+#credits {
+    float: right;
+    margin-top: 0.2em;
+}
+
+a {
+    color: #32506d;
+    text-decoration: underline;
+    font-weight: bold
+}
+
+a:hover {
+    text-decoration: none;
+}
